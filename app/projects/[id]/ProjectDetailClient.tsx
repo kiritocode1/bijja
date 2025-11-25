@@ -74,35 +74,43 @@ export default function ProjectDetailClient({ project, otherProjects }: ProjectD
 				</div>
 			</header>
 
-			{/* Image Grid */}
-			<div className="space-y-32 mb-40">
-				{project.images.map((img, index) => (
-					<div
-						key={index}
-						className="group relative w-full animate-fade-up"
-					>
-						{/* Decorational Math lines per image */}
-						<div className="absolute -top-4 -left-4 w-8 h-8 border-t border-l border-white/20 group-hover:border-white/60 transition-colors duration-500" />
-						<div className="absolute -bottom-4 -right-4 w-8 h-8 border-b border-r border-white/20 group-hover:border-white/60 transition-colors duration-500" />
+			{/* Masonry Gallery */}
+			<div className="columns-1 md:columns-2 lg:columns-3 gap-4 md:gap-6 space-y-4 md:space-y-6 mb-40">
+				{project.images.map((img, index) => {
+					// Vary sizes for visual interest
+					const isLarge = index % 5 === 0;
+					const isMedium = index % 3 === 1;
 
-						<div className="relative w-full h-auto overflow-hidden bg-zinc-900">
-							<Image
-								src={img}
-								alt={`${project.title} image ${index + 1}`}
-								width={1920}
-								height={1080}
-								className="w-full h-auto object-contain max-h-[85vh]"
-								priority={index === 0}
-							/>
-						</div>
+					return (
+						<div
+							key={index}
+							className={`group relative break-inside-avoid animate-fade-up ${isLarge ? "lg:col-span-2" : ""}`}
+						>
+							{/* Corner accents */}
+							<div className="absolute -top-2 -left-2 w-4 h-4 border-t border-l border-white/20 group-hover:border-white/60 transition-colors duration-500 z-10" />
+							<div className="absolute -bottom-2 -right-2 w-4 h-4 border-b border-r border-white/20 group-hover:border-white/60 transition-colors duration-500 z-10" />
 
-						{/* Image Counter / Caption placeholder */}
-						<div className="mt-4 flex justify-between font-mono text-xs text-zinc-600 uppercase tracking-widest">
-							<span>Fig. {index + 1}</span>
-							<span>Original Render</span>
+							<div className={`relative w-full overflow-hidden bg-zinc-900 ${isLarge ? "aspect-[4/3]" : isMedium ? "aspect-square" : "aspect-[3/4]"}`}>
+								<Image
+									src={img}
+									alt={`${project.title} image ${index + 1}`}
+									fill
+									className="object-cover transition-all duration-700 group-hover:scale-105"
+									sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+									priority={index < 3}
+								/>
+
+								{/* Hover overlay */}
+								<div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-all duration-500" />
+
+								{/* Figure number */}
+								<div className="absolute bottom-3 left-3 font-mono text-xs text-white/60 group-hover:text-white/90 transition-colors">
+									{index + 1}.{(index % 3) + 1}
+								</div>
+							</div>
 						</div>
-					</div>
-				))}
+					);
+				})}
 			</div>
 
 			{/* Other Projects Section */}
