@@ -6,16 +6,9 @@ import { ArrowLeft } from "lucide-react";
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import type { Project } from "@/lib/data";
 
 gsap.registerPlugin(ScrollTrigger);
-
-type Project = {
-	id: string;
-	title: string;
-	category: string;
-	cover: string;
-	images: string[];
-};
 
 type ProjectDetailProps = {
 	project: Project;

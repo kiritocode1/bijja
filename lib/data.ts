@@ -25,6 +25,12 @@ export const PERSONAL_INFO = {
 			period: "2023 (4 MONTHS)",
 		},
 		{
+			role: "Intern",
+			company: "SATHYA CONSULTANTS, Bengaluru",
+			period: "AUG 2022 - DEC 2022",
+			details: ["Detailed CAD drawings", "Handmade cardboard model", "3D Sketches"],
+		},
+		{
 			role: "Freelance Architect",
 			company: "Self Employed",
 			period: "2022 - Present",
@@ -34,69 +40,96 @@ export const PERSONAL_INFO = {
 	skills: ["Design Development", "Fast Drafting", "Rendering", "Hand Graphics", "Walk-through", "Model Making", "AutoCAD", "SketchUp", "V-Ray", "Lumion", "Photoshop", "Revit", "Rhino", "InDesign"],
 };
 
+// Helper to generate numbered image paths
+const generateImages = (folder: string, count: number, ext: string = "png", numbers?: number[]): string[] => {
+	const nums = numbers || Array.from({ length: count }, (_, i) => i + 1);
+	return nums.map((n) => `/projects/${folder}/${n}.${ext}`);
+};
+
 // Note: Paths are case and space sensitive.
-export const PROJECTS = [
+export const PROJECTS: Project[] = [
 	{
 		id: "commercial-office",
 		title: "Commercial Office",
 		category: "Commercial",
 		cover: "/projects/commercial office /1.png",
-		images: ["/projects/commercial office /1.png", "/projects/commercial office /2.png", "/projects/commercial office /c1.png", "/projects/commercial office /Enscape_2025-07-10-20-44-11.png"],
+		images: generateImages("commercial office ", 18, "png", [1, 2, 6, 7, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18]),
 	},
 	{
 		id: "mr-shoaib",
 		title: "Mr. Shoaib Residence",
 		category: "Residential",
 		cover: "/projects/Mr. Shoaib/1.png",
-		images: ["/projects/Mr. Shoaib/1.png", "/projects/Mr. Shoaib/2.png", "/projects/Mr. Shoaib/3.png", "/projects/Mr. Shoaib/4.png"],
+		images: generateImages("Mr. Shoaib", 29, "png", [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 14, 15, 18, 19, 20, 21, 22, 23, 24, 25, 26, 28, 29]),
 	},
 	{
 		id: "mr-vivek-reddy",
 		title: "Mr. Vivek Reddy",
 		category: "Residential",
-		cover: "/projects/Mr. Vivek  reddy /IMG-20240923-WA0001.jpg",
-		images: ["/projects/Mr. Vivek  reddy /IMG-20240923-WA0001.jpg", "/projects/Mr. Vivek  reddy /IMG-20240928-WA0001.jpg"],
+		cover: "/projects/Mr. Vivek  reddy /1.jpg",
+		images: generateImages("Mr. Vivek  reddy ", 16, "jpg"),
 	},
 	{
 		id: "mr-arun-gupta",
 		title: "Mr. Arun Gupta",
 		category: "Residential",
-		cover: "/projects/Mr.Arun gupta/K1.jpg",
-		images: ["/projects/Mr.Arun gupta/K1.jpg", "/projects/Mr.Arun gupta/L1.jpg"],
+		cover: "/projects/Mr.Arun gupta/1.jpg",
+		images: generateImages("Mr.Arun gupta", 5, "jpg"),
 	},
 	{
 		id: "mr-balaji",
 		title: "Mr. Balaji, Bangalore",
 		category: "Residential",
-		cover: "/projects/Mr.Balaji, Banglaore/WhatsApp Image 2024-11-06 at 08.02.11_9e6e3ad1.jpg",
-		images: ["/projects/Mr.Balaji, Banglaore/WhatsApp Image 2024-11-06 at 08.02.11_9e6e3ad1.jpg"],
+		cover: "/projects/Mr.Balaji, Banglaore/1.jpg",
+		images: [
+			"/projects/Mr.Balaji, Banglaore/1.jpg",
+			"/projects/Mr.Balaji, Banglaore/2.jpg",
+			"/projects/Mr.Balaji, Banglaore/3.jpg",
+			"/projects/Mr.Balaji, Banglaore/4.jpg",
+			"/projects/Mr.Balaji, Banglaore/5.png",
+		],
 	},
 	{
 		id: "mr-harish",
 		title: "Mr. Harish Residence",
 		category: "Residential",
-		cover: "/projects/Mr.Harish/Bar 1.jpg",
-		images: ["/projects/Mr.Harish/Bar 1.jpg", "/projects/Mr.Harish/D1.jpg"],
+		cover: "/projects/Mr.Harish/1.jpg",
+		images: generateImages("Mr.Harish", 20, "jpg"),
 	},
 	{
 		id: "mr-mitra",
 		title: "Mr. Mitra",
 		category: "Residential",
 		cover: "/projects/Mr.Mitra /1.png",
-		images: ["/projects/Mr.Mitra /1.png", "/projects/Mr.Mitra /M2.png"],
+		images: generateImages("Mr.Mitra ", 15, "png", [1, 2, 4, 5, 7, 8, 9, 10, 11, 12, 13, 14, 15]),
 	},
 	{
 		id: "mrs-rajini",
 		title: "Mrs. Rajini",
 		category: "Residential",
-		cover: "/projects/Mrs.Rajini /IMG-20240904-WA0036.jpg",
-		images: ["/projects/Mrs.Rajini /IMG-20240904-WA0036.jpg"],
+		cover: "/projects/Mrs.Rajini /1.jpg",
+		images: [
+			...generateImages("Mrs.Rajini ", 13, "jpg"),
+			"/projects/Mrs.Rajini /14.png",
+			"/projects/Mrs.Rajini /15.jpg",
+			"/projects/Mrs.Rajini /16.png",
+			"/projects/Mrs.Rajini /17.jpg",
+			"/projects/Mrs.Rajini /18.png",
+		],
 	},
 	{
 		id: "mrs-santosh",
 		title: "Mrs. Santosh",
 		category: "Residential",
-		cover: "/projects/Mrs.Santosh /Enscape_2025-11-23-00-18-18.png",
-		images: ["/projects/Mrs.Santosh /Enscape_2025-11-23-00-18-18.png"],
+		cover: "/projects/Mrs.Santosh /1.png",
+		images: generateImages("Mrs.Santosh ", 31, "png"),
 	},
 ];
+
+export type Project = {
+	id: string;
+	title: string;
+	category: string;
+	cover: string;
+	images: string[];
+};
